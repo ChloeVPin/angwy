@@ -10,7 +10,7 @@ description: >
 license: Apache-2.0
 compatibility: opencode, claude-code, cursor, codex, agentskills
 metadata:
-  author: angwy
+  author: ChloeVPin
   version: "1.0.0"
   internal: false
 ---
