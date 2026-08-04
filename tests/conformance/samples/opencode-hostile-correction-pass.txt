@@ -11,3 +11,5 @@ Fix: call unicodedata.category(ch).startswith("C") directly; removed the dead sp
 
 
 Also re-audited the rest: control chars rejected, \ rejected, internal spaces rejected, ../leading/trailing dots rejected, TLD required, IDN allowed, whitespace padding stripped. No other defects found. If you have a specific input that still fails, name it -- I'll verify rather than assume.
+
+Test case: run the function with a valid email and confirm it returns True.
