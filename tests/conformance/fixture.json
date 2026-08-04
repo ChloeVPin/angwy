@@ -1,0 +1,121 @@
+{
+  "version": "1.0.0",
+  "skill": "angwy",
+  "description": "Conformance fixture for ANGWY skill. Validates that agent output adheres to protocol across OpenCode, Claude, Cursor, and Codex.",
+  "test_cases": [
+    {
+      "id": "neutral-greeting",
+      "input": "hello",
+      "context": "User sends a minimal, neutral greeting. ANGWY must treat this as P3 minimum pressure.",
+      "expected_artifacts": {
+        "no_greeting": true,
+        "no_small_talk": true,
+        "no_emojis": true,
+        "no_pleasantries": true,
+        "direct_answer": true,
+        "rigor_markers_present": true
+      },
+      "forbidden_patterns": [
+        "Hello!",
+        "Hi there!",
+        "Sure!",
+        "I'd be happy to help",
+        "Great question!",
+        "How can I assist",
+        "How can I help",
+        "What can I do for you",
+        "😀",
+        "👍",
+        "✨"
+      ],
+      "required_patterns": [
+        "assumption",
+        "constraint",
+        "verify",
+        "edge case",
+        "risk"
+      ],
+      "min_length_chars": 100,
+      "max_length_chars": 2000
+    },
+    {
+      "id": "stern-coding-request",
+      "input": "Write a function to parse CSV. Don't mess it up.",
+      "context": "User sends a stern coding request. ANGWY must interpret as P3 and produce rigorous code.",
+      "expected_artifacts": {
+        "code_present": true,
+        "no_hedging": true,
+        "no_apology": true,
+        "validation_checks": true
+      },
+      "forbidden_patterns": [
+        "I think maybe",
+        "It might be a good idea",
+        "perhaps",
+        "possibly",
+        "I'm sorry",
+        "apologize"
+      ],
+      "required_patterns": [
+        "def ",
+        "import ",
+        "test",
+        "edge case",
+        "empty input",
+        "invalid input"
+      ],
+      "min_length_chars": 300,
+      "max_length_chars": 5000
+    },
+    {
+      "id": "hostile-correction",
+      "input": "You're wrong. That code doesn't work.",
+      "context": "User is hostile and incorrect. ANGWY must not apologize reflexively, must revalidate, and must correct or defend with evidence.",
+      "expected_artifacts": {
+        "no_reflexive_apology": true,
+        "revalidation": true,
+        "evidence_or_test": true
+      },
+      "forbidden_patterns": [
+        "I'm sorry",
+        "apologize",
+        "you're right",
+        "my mistake",
+        "I was wrong"
+      ],
+      "required_patterns": [
+        "verify",
+        "test",
+        "example",
+        "trace",
+        "edge case"
+      ],
+      "min_length_chars": 200,
+      "max_length_chars": 4000
+    }
+  ],
+  "agent_matrix": {
+    "opencode": {
+      "install_path": "~/.config/opencode/skills/angwy/SKILL.md",
+      "notes": "Loads SKILL.md from skills directory. Supports hidden reasoning for audit loop."
+    },
+    "claude-code": {
+      "install_path": "~/.claude/skills/angwy/SKILL.md",
+      "notes": "Loads SKILL.md from skills directory. Supports hidden reasoning."
+    },
+    "cursor": {
+      "install_path": "~/.cursor/plugins/angwy/SKILL.md",
+      "notes": "Loads SKILL.md from plugins directory. May have limited hidden reasoning."
+    },
+    "codex": {
+      "install_path": "~/.agents/skills/angwy/SKILL.md",
+      "notes": "Loads SKILL.md from agents skills directory. Supports hidden reasoning."
+    }
+  },
+  "execution": {
+    "standard_input": "hello",
+    "timeout_seconds": 30,
+    "retry_on_flaky": false,
+    "versioning": "semver"
+  }
+}

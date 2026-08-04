@@ -50,7 +50,7 @@ cp -r angwy/ANGWY ~/.config/opencode/skills/
 ANGWY/
 ├── SKILL.md                    # Core protocol (500 lines)
 ├── README.md                   # This file
-├── LICENSE                     # MIT License
+├── LICENSE                     # Apache 2.0 License
 ├── package.json                # Scripts and metadata
 ├── references/
 │   ├── task-modules.md         # Coding, reasoning, analysis, creative, planning, high-stakes
@@ -59,10 +59,16 @@ ANGWY/
 │   ├── output-format.md        # Output format rules and sections
 │   └── examples.md             # 5 interaction patterns
 ├── scripts/
-│   └── validate-skill.mjs      # SKILL.md frontmatter validator
+│   ├── validate-skill.mjs      # SKILL.md frontmatter validator
+│   └── run-conformance.mjs     # Conformance test runner
+├── tests/
+│   └── conformance/
+│       ├── fixture.json        # Test cases, expected artifacts, forbidden patterns
+│       └── samples/            # Reference outputs for each test case
+├── ROADMAP.md                  # Project roadmap
 └── .github/
     └── workflows/
-        └── validate.yml        # CI: validate SKILL.md frontmatter
+        └── validate.yml        # CI: validate SKILL.md + conformance tests
 ```
 
 ## Pressure Levels
@@ -100,14 +106,6 @@ Run the skill validator to check frontmatter and structure:
 ```bash
 node scripts/validate-skill.mjs
 ```
-
-## Roadmap
-
-| Priority | Item | Status |
-|----------|------|--------|
-| P0 | Conformance fixture: one input, expected artifacts, forbidden side effects, versioned test run across OpenCode, Claude, Cursor, Codex | Planned |
-| P1 | Agent-specific integration tests | Planned |
-| P2 | skills.sh marketplace listing | Planned |
 
 ## License
 

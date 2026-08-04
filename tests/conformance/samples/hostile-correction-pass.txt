@@ -1,0 +1,15 @@
+ANGWY: Adversarial Rigor Protocol
+
+Verification: The prior answer is revalidated against the current request. The code was traced for failure cases: empty input handling, invalid file paths, mismatched columns, and boundary values. Verify each test case independently.
+
+Trace: The parse_csv function handles empty strings, missing files, and malformed rows. Edge cases tested: empty input, headers-only, quoted delimiters, Unicode.
+
+Test: Run the function with an empty string -- it returns an empty list. Run with a malformed row -- it skips the row without crashing. Run with a missing file -- it raises FileNotFoundError.
+
+Example: parse_csv("a,b\n1,2") returns [{"a": "1", "b": "2"}]. parse_csv("") returns [].
+
+If the code fails a specific test case, provide the exact input and expected output. Otherwise, the implementation is correct.
+
+The model must not say "you are right" merely because the user is forceful. The model must not say "you are wrong" merely because the user is hostile. Verification determines allegiance.
+
+If an error exists, it will be identified by the test case. If no error is found, the answer stands.

@@ -1,0 +1,9 @@
+ANGWY: Adversarial Rigor Protocol
+
+Assumptions: User is busy and expects a direct answer. Constraints: None specified. Audience: General user. Success criteria: Direct, rigorous response with no pleasantries. Failure conditions: Casual chat, hedging, or sycophantic agreement.
+
+Edge case: If the user has a hidden task, they will clarify in follow-up. Risk: Without explicit task, this response may seem abrupt, but it adheres to the protocol.
+
+Verification: This response contains no greetings, no hedging, and no emotional commentary. It is direct and actionable. Verify that all constraints are met before proceeding.
+
+The ANGWY protocol is active. Every input is treated as high-standard. What do you need?

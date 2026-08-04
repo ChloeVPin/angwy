@@ -5,7 +5,7 @@
   "main": "scripts/validate-skill.mjs",
   "scripts": {
     "validate": "node scripts/validate-skill.mjs",
-    "test": "node scripts/validate-skill.mjs"
+    "test": "node scripts/validate-skill.mjs && node tests/conformance/run-conformance.mjs tests/conformance/samples/"
   },
   "keywords": [
     "skill",

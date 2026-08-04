@@ -6,11 +6,15 @@ on:
       - 'SKILL.md'
       - 'references/**'
       - 'scripts/**'
+      - 'tests/**'
+      - 'ROADMAP.md'
   pull_request:
     paths:
       - 'SKILL.md'
       - 'references/**'
       - 'scripts/**'
+      - 'tests/**'
+      - 'ROADMAP.md'
 
 jobs:
   validate:
@@ -20,4 +24,4 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '20'
-      - run: node scripts/validate-skill.mjs
+      - run: npm test
