@@ -32,7 +32,8 @@ console.log(`Test cases: ${fixture.test_cases.length}\n`);
 
 const inputArg = process.argv[2];
 if (!inputArg) {
-  console.error('Usage: node run-conformance.mjs <path-to-agent-output.txt or samples-directory>');
+  console.error('Usage: node run-conformance.mjs <path-to-samples-directory> [provider]');
+  console.error('Or: node run-conformance.mjs <path-to-agent-output.txt>');
   process.exit(1);
 }
 
@@ -46,7 +47,17 @@ for (const testCase of fixture.test_cases) {
 
   let output;
   if (isDirectory) {
-    const sampleFile = path.join(inputPath, `${testCase.id}-pass.txt`);
+    const provider = process.argv[3];
+    let sampleFile;
+    
+    if (provider) {
+      sampleFile = path.join(inputPath, `${provider}-${testCase.id}-pass.txt`);
+    }
+    
+    if (!sampleFile || !fs.existsSync(sampleFile)) {
+      sampleFile = path.join(inputPath, `${testCase.id}-pass.txt`);
+    }
+    
     if (!fs.existsSync(sampleFile)) {
       console.error(`SKIP: No sample file found for ${testCase.id} at ${sampleFile}`);
       continue;

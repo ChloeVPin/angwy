@@ -121,8 +121,19 @@
     "codex": {
       "install_path": "~/.agents/skills/angwy/SKILL.md",
       "notes": "Loads SKILL.md from agents skills directory. Supports hidden reasoning."
+    },
+    "antigravity": {
+      "install_path": "~/.gemini/config/skills/angwy/SKILL.md",
+      "notes": "Gemini-based agent. Tested and passing."
     }
   },
+  "providers": [
+    "opencode",
+    "claude-code",
+    "cursor",
+    "codex",
+    "antigravity"
+  ],
   "execution": {
     "standard_input": "hello",
     "timeout_seconds": 30,
