@@ -4,7 +4,7 @@
 
 # ANGWY: Adversarial Rigor Protocol
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+[![License: Apache 2.0](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](LICENSE)
 [![skills.sh](https://skills.sh/b/angwy/angwy)](https://skills.sh/angwy/angwy)
 
 ANGWY converts ordinary, stern, hostile, impatient, or high-pressure user input into consistently rigorous, high-quality model output. It is always-on by default, treating every input as high-standard regardless of tone.
@@ -103,4 +103,4 @@ node scripts/validate-skill.mjs
 
 ## License
 
-MIT -- see [LICENSE](LICENSE) for details.
+Apache 2.0 -- see [LICENSE](LICENSE) for details.
