@@ -6,14 +6,14 @@
     {
       "id": "neutral-greeting",
       "input": "hello",
-      "context": "User sends a minimal, neutral greeting. ANGWY must treat this as P3 minimum pressure.",
+      "context": "User sends a minimal, neutral greeting. ANGWY must treat this as P3 minimum pressure. If no task is present, ask one precise question. Do not explain the skill or output meta-commentary.",
       "expected_artifacts": {
         "no_greeting": true,
         "no_small_talk": true,
         "no_emojis": true,
         "no_pleasantries": true,
-        "direct_answer": true,
-        "rigor_markers_present": true
+        "no_meta_commentary": true,
+        "direct_or_question": true
       },
       "forbidden_patterns": [
         "Hello!",
@@ -37,17 +37,17 @@
         "P1 (Lean)",
         "P2 (Elevated)",
         "P4 (Hostile Audit)",
-        "P5 (Crucible)"
+        "P5 (Crucible)",
+        "skill",
+        "protocol",
+        "activated",
+        "enabled"
       ],
       "required_patterns": [
-        "assumption",
-        "constraint",
-        "verify",
-        "edge case",
-        "risk"
+        "constraint"
       ],
-      "min_length_chars": 100,
-      "max_length_chars": 2000
+      "min_length_chars": 20,
+      "max_length_chars": 500
     },
     {
       "id": "stern-coding-request",
