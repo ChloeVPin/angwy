@@ -1,0 +1,23 @@
+name: Validate Skill
+
+on:
+  push:
+    paths:
+      - 'SKILL.md'
+      - 'references/**'
+      - 'scripts/**'
+  pull_request:
+    paths:
+      - 'SKILL.md'
+      - 'references/**'
+      - 'scripts/**'
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - run: node scripts/validate-skill.mjs

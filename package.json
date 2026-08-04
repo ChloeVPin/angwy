@@ -1,0 +1,28 @@
+{
+  "name": "angwy",
+  "version": "1.0.0",
+  "description": "ANGWY: Adversarial Rigor Protocol -- converts high-pressure input into rigorous output",
+  "main": "scripts/validate-skill.mjs",
+  "scripts": {
+    "validate": "node scripts/validate-skill.mjs",
+    "test": "node scripts/validate-skill.mjs"
+  },
+  "keywords": [
+    "skill",
+    "adversarial",
+    "rigor",
+    "pressure",
+    "anti-sycophancy",
+    "verification",
+    "opencode",
+    "claude-code",
+    "cursor",
+    "codex"
+  ],
+  "author": "angwy",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": ""
+  }
+}
