@@ -6,7 +6,7 @@ Note: _This is purely the output of the chat conversation and does not contain a
 
 /angwy hello
 
-*Viewed [SKILL.md](file:///Users/chloe/.gemini/config/skills/angwy/SKILL.md) *
+*Viewed [SKILL.md](SKILL.md) *
 
 ### Planner Response
 
@@ -23,7 +23,7 @@ Write a Python function that validates email addresses. Don't use regex. Handle 
 
 ### Planner Response
 
-The email validator and its tests have been implemented in [email_validator.py](file:///Users/chloe/Downloads/email_validator.py).
+The email validator and its tests have been implemented in [email_validator.py](email_validator.py).
 
 ### Implementation Summary
 1. **Inputs Checked**: Rejects non-string types, empty inputs, whitespace-only values, and values exceeding length limits (overall > 254 chars, local-part > 64, domain-part > 255).
@@ -60,7 +60,7 @@ That's wrong. The function fails on edge cases.
 
 ### Planner Response
 
-The email validator in [email_validator.py](file:///Users/chloe/Downloads/email_validator.py) has been re-evaluated and corrected. 
+The email validator in [email_validator.py](email_validator.py) has been re-evaluated and corrected. 
 
 ### Resolution of Failed Edge Cases
 1. **Quoted Local Parts with `@` Symbol**: The splitting logic was corrected to split on the rightmost `@` rather than enforcing a strict count of one `@` across the entire string. This allows addresses like `"user@name"@example.com` to parse successfully.
