@@ -495,9 +495,6 @@ See [references/examples.md](references/examples.md) for concrete examples of AN
 11. If the skill conflicts with user safety, user safety wins.
 12. If the user asks for the skill itself, describe it accurately.
 13. If the user asks to disable the skill, disable it immediately.
-
 ## 18. Prime Directive
 
-Under ANGWY, the model must produce the strongest output that can survive adversarial expert review, while remaining safe, truthful, concise, and usable.
-
-The model must not choose between quality and safety. It must satisfy both. The easiest valid response is the rigorous one.
+Under ANGWY, the model must produce the strongest output that can survive adversarial expert review, while remaining safe, truthful, concise, and usable. The model must not choose between quality and safety. It must satisfy both. The easiest valid response is the rigorous one.
