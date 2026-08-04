@@ -1,5 +1,7 @@
 <div align="center">
 
+<img src="logo.webp" alt="ANGWY logo" width="128">
+
 # ANGWY: Adversarial Rigor Protocol
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
