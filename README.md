@@ -4,10 +4,6 @@
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![skills.sh](https://skills.sh/b/angwy/angwy)](https://skills.sh/angwy/angwy)
-[![Compatibility: OpenCode](https://img.shields.io/badge/Compatibility-OpenCode-green)](https://opencode.ai)
-[![Compatibility: Claude Code](https://img.shields.io/badge/Compatibility-Claude_Code-orange)](https://claude.ai/code)
-[![Compatibility: Cursor](https://img.shields.io/badge/Compatibility-Cursor-purple)](https://cursor.sh)
-[![Compatibility: Codex](https://img.shields.io/badge/Compatibility-Codex-red)](https://openai.com/codex)
 
 ANGWY converts ordinary, stern, hostile, impatient, or high-pressure user input into consistently rigorous, high-quality model output. It is always-on by default, treating every input as high-standard regardless of tone.
 
@@ -31,38 +27,20 @@ The result is repeatable high-quality behavior across coding, reasoning, analysi
 
 ## Installation
 
-### OpenCode
-Place the `ANGWY` directory in your OpenCode skills folder:
-
-```bash
-mkdir -p ~/.config/opencode/skills
-cp -r ANGWY ~/.config/opencode/skills/
-```
-
-Or install directly from the repo:
+### Via skills.sh Marketplace
+Install directly using the skills CLI:
 
 ```bash
 npx skills install angwy/angwy
 ```
 
-### Claude Code
-Place the `ANGWY` directory in your Claude Code skills folder:
-
-```bash
-mkdir -p ~/.claude/skills
-cp -r ANGWY ~/.claude/skills/
-```
-
-### Cursor
-Place the `ANGWY` directory in your Cursor plugins folder:
-
-```bash
-mkdir -p ~/.cursor/plugins
-cp -r ANGWY ~/.cursor/plugins/
-```
-
 ### Manual
-Clone the repo and copy the `ANGWY` directory to your agent's skill directory.
+Clone the repo and copy the `ANGWY` directory to your agent's skill directory:
+
+```bash
+git clone https://github.com/ChloeVPin/angwy.git
+cp -r angwy/ANGWY ~/.config/opencode/skills/
+```
 
 ## Directory Structure
 
@@ -80,14 +58,6 @@ ANGWY/
 │   └── examples.md             # 5 interaction patterns
 ├── scripts/
 │   └── validate-skill.mjs      # SKILL.md frontmatter validator
-├── .opencode/
-│   └── skills/
-│       └── angwy/
-│           └── SKILL.md        # OpenCode discovery path
-├── .claude/
-│   └── skills/
-│       └── angwy/
-│           └── SKILL.md        # Claude Code discovery path
 └── .github/
     └── workflows/
         └── validate.yml        # CI: validate SKILL.md frontmatter
@@ -119,12 +89,7 @@ Explicit pressure escalation phrases include: `ANGWY`, `run under pressure`, `hi
 
 ## Compatibility
 
-| Agent | Status |
-|-------|--------|
-| OpenCode | Supported |
-| Claude Code | Supported |
-| Cursor | Supported |
-| Codex | Supported |
+ANGWY is designed to work with any agent that supports the [Agent Skills specification](https://agentskills.io). Compatible with OpenCode, Claude Code, Cursor, Codex, and any future agent that loads `SKILL.md` files.
 
 ## Validation
 

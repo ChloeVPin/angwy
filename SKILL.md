@@ -8,7 +8,7 @@ description: >
   anti-sycophancy, forced verification, and loss-aware framing. Always-on by
   default; every input is treated as high-standard regardless of tone.
 license: MIT
-compatibility: opencode, claude-code, cursor, codex
+compatibility: opencode, claude-code, cursor, codex, agentskills
 metadata:
   author: angwy
   version: "1.0.0"
