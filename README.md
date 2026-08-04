@@ -104,3 +104,14 @@ node scripts/validate-skill.mjs
 ## License
 
 Apache 2.0 -- see [LICENSE](LICENSE) for details.
+
+## Forking Rules
+
+If you fork or redistribute this skill, you must:
+
+- Keep the `LICENSE` file intact
+- Preserve the copyright notice: `Copyright 2026 ChloeVPin`
+- State your changes clearly in any modified files
+- Include this `README.md` or equivalent attribution notice
+
+Do not remove or obscure the original license or copyright. Attribution is required by the Apache 2.0 license.
