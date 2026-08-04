@@ -101,6 +101,14 @@ Run the skill validator to check frontmatter and structure:
 node scripts/validate-skill.mjs
 ```
 
+## Roadmap
+
+| Priority | Item | Status |
+|----------|------|--------|
+| P0 | Conformance fixture: one input, expected artifacts, forbidden side effects, versioned test run across OpenCode, Claude, Cursor, Codex | Planned |
+| P1 | Agent-specific integration tests | Planned |
+| P2 | skills.sh marketplace listing | Planned |
+
 ## License
 
 Apache 2.0 -- see [LICENSE](LICENSE) for details.
