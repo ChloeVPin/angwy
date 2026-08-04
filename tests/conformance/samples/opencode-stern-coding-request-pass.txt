@@ -132,7 +132,7 @@ class EmailTests(unittest.TestCase):
 if __name__ == "__main__":
     unittest.main()
 
-Run tests to verify all edge cases pass.
+Run tests to verify all edge cases pass. Run the test suite.
 
 
 Valid = exactly one @, non-empty local ≤64 chars (no leading/trailing/consecutive dots, no spaces/control chars), domain with ≥2 labels, valid label chars, each ≤63, no leading/trailing hyphen, no empty labels.
