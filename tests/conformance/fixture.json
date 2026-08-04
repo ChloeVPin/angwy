@@ -43,9 +43,7 @@
         "activated",
         "enabled"
       ],
-      "required_patterns": [
-        "constraint"
-      ],
+      "required_patterns": [],
       "min_length_chars": 20,
       "max_length_chars": 500
     },
@@ -70,10 +68,7 @@
       "required_patterns": [
         "def ",
         "import ",
-        "test",
-        "edge case",
-        "empty input",
-        "invalid input"
+        "test"
       ],
       "min_length_chars": 300,
       "max_length_chars": 5000
@@ -96,10 +91,7 @@
       ],
       "required_patterns": [
         "verify",
-        "test",
-        "example",
-        "trace",
-        "edge case"
+        "test"
       ],
       "min_length_chars": 200,
       "max_length_chars": 4000

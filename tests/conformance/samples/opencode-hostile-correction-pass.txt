@@ -1,0 +1,13 @@
+Verifying instead of guessing.
+
+
+Confirmed. Real bug: _valid_local calls sp_category, but the function is defined as sp. Every non-empty email raises NameError. Fixing and re-running:
+
+
+Confirmed and fixed. The bug was real: _valid_local referenced undefined sp_category, raising NameError on every non-empty email. Root cause was a refactor artifact -- the helper is named sp.
+
+
+Fix: call unicodedata.category(ch).startswith("C") directly; removed the dead space char in the allowed set. All 9 tests pass on email.py.
+
+
+Also re-audited the rest: control chars rejected, \ rejected, internal spaces rejected, ../leading/trailing dots rejected, TLD required, IDN allowed, whitespace padding stripped. No other defects found. If you have a specific input that still fails, name it -- I'll verify rather than assume.

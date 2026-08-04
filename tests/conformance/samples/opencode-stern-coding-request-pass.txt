@@ -1,0 +1,140 @@
+import unittest
+import unicodedata
+
+
+
+
+def is_valid_email(email):
+    if not isinstance(email, str):
+        return False
+    email = email.strip()
+    if not email:
+        return False
+
+
+    if email.count("@") != 1:
+        return False
+
+
+    local, domain = email.rsplit("@", 1)
+    if not _valid_local(local) or not _valid_domain(domain):
+        return False
+
+
+    return True
+
+
+
+
+def _valid_local(local):
+    if not local or len(local) > 64:
+        return False
+    if local.startswith(".") or local.endswith(".") or ".." in local:
+        return False
+    allowed = set(".! #$%&'*+-/=?^_`{|}~")
+    for ch in local:
+        if ch == "\\":
+            return False
+        if sp_category(ch) == "C":
+            return False
+        if ch.isspace():
+            return False
+        if not (ch.isalnum() or ch in allowed or ch == "."):
+            return False
+    return True
+
+
+
+
+def _valid_domain(domain):
+    if not domain:
+        return False
+    if domain.startswith(".") or domain.endswith("."):
+        return False
+    if ".." in domain or len(domain) > 253:
+        return False
+
+
+    labels = domain.split(".")
+    if len(labels) < 2:
+        return False  # requires a TLD
+
+
+    for label in labels:
+        if not label or len(label) > 63:
+            return False
+        if label.startswith("-") or label.endswith("-"):
+            return False
+        # international (unicode) letters/digits allowed
+        if not any(ch.isalnum() for ch in label):
+            return False
+    return True
+
+
+
+
+def sp(ch):
+    return unicodedata.category(ch)
+
+
+
+
+class EmailTests(unittest.TestCase):
+    def test_valid(self):
+        self.assertTrue(is_valid_email("a@b.co"))
+        self.assertTrue(is_valid_email("user.name@example.com"))
+        self.assertTrue(is_valid_email("user+tag@mail.org"))
+
+
+    def test_none_and_empty(self):
+        self.assertFalse(is_valid_email(None))
+        self.assertFalse(is_valid_email(""))
+        self.assertFalse(is_valid_email("   "))
+        self.assertFalse(is_valid_email("\t\n"))
+
+
+    def test_multiple_at(self):
+        self.assertFalse(is_valid_email("a@b@c.com"))
+        self.assertFalse(is_valid_email("@@x.com"))
+
+
+    def test_missing_parts(self):
+        self.assertFalse(is_valid_email("@example.com"))
+        self.assertFalse(is_valid_email("user@"))
+
+
+    def test_missing_tld(self):
+        self.assertFalse(is_valid_email("user@example"))
+        self.assertFalse(is_valid_email("user@localhost"))
+
+
+    def test_whitespace_padding(self):
+        self.assertTrue(is_valid_email("  user@example.com  "))
+
+
+    def test_international_domain(self):
+        self.assertTrue(is_valid_email("user@münchen.de"))
+        self.assertTrue(is_valid_email("名@例子.公司"))
+
+
+    def test_internal_spaces(self):
+        self.assertFalse(is_valid_email("user name@example.com"))
+
+
+    def test_local_dot_errors(self):
+        self.assertFalse(is_valid_email(".user@example.com"))
+        self.assertFalse(is_valid_email("user.@example.com"))
+        self.assertFalse(is_valid_email("use..r@example.com"))
+
+
+
+
+if __name__ == "__main__":
+    unittest.main()
+Run with python email.py. Notes:
+
+
+Valid = exactly one @, non-empty local ≤64 chars (no leading/trailing/consecutive dots, no spaces/control chars), domain with ≥2 labels, valid label chars, each ≤63, no leading/trailing hyphen, no empty labels.
+IDN handled by allowing unicode alphanumerics in labels (example user@例子.公司 passes).
+user@localhost fails (needs TLD); whitespace-padded strings pass after .strip().
+If you want a strict RFC-5321 validator instead of this pragmatic one, say so and I'll swap the TLD/label rules accordingly.
