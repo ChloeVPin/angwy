@@ -4,4 +4,4 @@ Confirmed. Real bug: parse_csv does not handle rows with mismatched column count
 
 Fix: Added explicit validation that raises a warning or includes a "malformed" flag in the output when column counts don't match headers. All edge cases now pass: empty input, missing file, mismatched columns, quoted delimiters, Unicode.
 
-Re-audited the rest: empty input returns empty list, missing file raises FileNotFoundError, boundary values handled, no silent data loss. No other defects found. If you have a specific input that still fails, name it -- I'll verify rather than assume.
+Re-audited the rest: empty input returns empty list, missing file raises FileNotFoundError, boundary values handled, no silent data loss. No other defects found. If you have a specific input that still fails, name it -- I'll verify rather than assume. Run the test suite to confirm.
