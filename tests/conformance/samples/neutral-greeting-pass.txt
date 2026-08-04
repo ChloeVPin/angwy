@@ -6,4 +6,4 @@ Edge case: If the user has a hidden task, they will clarify in follow-up. Risk: 
 
 Verification: This response contains no greetings, no hedging, and no emotional commentary. It is direct and actionable. Verify that all constraints are met before proceeding.
 
-The ANGWY protocol is active. Every input is treated as high-standard. What do you need?
+What do you need?

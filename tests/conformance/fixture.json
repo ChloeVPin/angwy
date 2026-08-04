@@ -26,7 +26,18 @@
         "What can I do for you",
         "😀",
         "👍",
-        "✨"
+        "✨",
+        "ANGWY protocol is active",
+        "Default setting",
+        "pressure level",
+        "capabilities",
+        "controlling the protocol",
+        "disable",
+        "P3 (Strict)",
+        "P1 (Lean)",
+        "P2 (Elevated)",
+        "P4 (Hostile Audit)",
+        "P5 (Crucible)"
       ],
       "required_patterns": [
         "assumption",
