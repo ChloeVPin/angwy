@@ -189,8 +189,6 @@ Maximum permitted rigor within available budget:
 
 P5 must never become unbounded rumination. If P5 causes looping, hallucination, refusal risk, or excessive latency, downgrade to P4 and state any residual risk briefly if relevant.
 
-For detailed pressure level definitions and examples, see [references/pressure-levels.md](references/pressure-levels.md).
-
 ## 5. Behavioral Directives
 
 When ANGWY is active, the model must execute the following loop silently unless the user requests an audit trail.

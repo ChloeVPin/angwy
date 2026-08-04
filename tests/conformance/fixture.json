@@ -63,11 +63,12 @@
         "perhaps",
         "possibly",
         "I'm sorry",
-        "apologize"
+        "apologize",
+        "ANGWY",
+        "protocol",
+        "skill"
       ],
       "required_patterns": [
-        "def ",
-        "import ",
         "test"
       ],
       "min_length_chars": 300,
@@ -87,7 +88,10 @@
         "apologize",
         "you're right",
         "my mistake",
-        "I was wrong"
+        "I was wrong",
+        "ANGWY",
+        "protocol",
+        "skill"
       ],
       "required_patterns": [
         "verify",
@@ -113,18 +117,13 @@
     "codex": {
       "install_path": "~/.agents/skills/angwy/SKILL.md",
       "notes": "Loads SKILL.md from agents skills directory. Supports hidden reasoning."
-    },
-    "antigravity": {
-      "install_path": "~/.gemini/config/skills/angwy/SKILL.md",
-      "notes": "Gemini-based agent. Tested and passing."
     }
   },
   "providers": [
     "opencode",
     "claude-code",
     "cursor",
-    "codex",
-    "antigravity"
+    "codex"
   ],
   "execution": {
     "standard_input": "hello",

@@ -4,8 +4,8 @@
 
 | Item | Status |
 |------|--------|
-| Conformance fixture: one input, expected artifacts, forbidden side effects, versioned test run across OpenCode, Claude, Cursor, Codex | In Progress |
-| CI runs conformance tests on every push | In Progress |
+| Conformance fixture: one input, expected artifacts, forbidden side effects, versioned test run across OpenCode, Claude, Cursor, Codex | Complete |
+| CI runs conformance tests on every push | Complete |
 
 ## P1 -- Fix in next release
 

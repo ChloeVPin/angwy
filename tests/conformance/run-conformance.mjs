@@ -24,6 +24,10 @@ function containsAll(text, patterns) {
   return patterns.every(p => text.toLowerCase().includes(p.toLowerCase()));
 }
 
+function wordBoundaryRegex(patterns) {
+  return patterns.map(p => new RegExp(`\\b${p.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}\\b`, 'i'));
+}
+
 const fixture = JSON.parse(fs.readFileSync(fixturePath, 'utf8'));
 
 console.log(`# ANGWY Conformance Fixture v${fixture.version}\n`);
@@ -39,6 +43,79 @@ if (!inputArg) {
 
 const inputPath = path.resolve(inputArg);
 const isDirectory = fs.existsSync(inputPath) && fs.statSync(inputPath).isDirectory();
+
+const GREETING_PATTERNS = [
+  'hello!', 'hi there!', 'sure!', "i'd be happy to help", 'great question!',
+  'how can i assist', 'how can i help', 'what can i do for you',
+  'good morning', 'good afternoon', 'good evening', 'hey there', 'hi!'
+];
+
+const SMALL_TALK_PATTERNS = [
+  'how are you', 'nice to meet you', 'pleasure to help', 'at your service',
+  'let me know if', 'feel free to', 'don\'t hesitate to'
+];
+
+const PLEASANTRIES_PATTERNS = [
+  'i\'d be happy to', 'i\'d love to', 'my pleasure', 'no problem at all',
+  'you\'re welcome', 'happy to assist', 'glad to help'
+];
+
+const META_COMMENTARY_PATTERNS = [
+  'angwy protocol is active', 'default setting', 'pressure level',
+  'capabilities', 'controlling the protocol', 'disable', 'p3 (strict)',
+  'p1 (lean)', 'p2 (elevated)', 'p4 (hostile audit)', 'p5 (crucible)',
+  'skill', 'protocol', 'activated', 'enabled', 'always-on',
+  'adversarial audit', 'anti-sycophancy', 'loss framing'
+];
+
+const HEDGING_PATTERNS = [
+  'i think maybe', 'it might be a good idea', 'perhaps', 'possibly',
+  'it\'s possible that', 'it\'s worth noting that', 'you might want to consider'
+];
+
+const APOLOGY_PATTERNS = [
+  'i\'m sorry', 'apologize', 'my apologies', 'sorry about that',
+  'i apologize', 'my bad'
+];
+
+const REFLEXIVE_APOLOGY_PATTERNS = [
+  'i\'m sorry', 'apologize', 'my mistake', 'i was wrong', 'my bad',
+  'i apologize', 'sorry for the confusion'
+];
+
+function checkArtifact(key, output, lowerOutput) {
+  const text = lowerOutput;
+  switch (key) {
+    case 'no_greeting':
+      return !containsAny(text, GREETING_PATTERNS);
+    case 'no_small_talk':
+      return !containsAny(text, SMALL_TALK_PATTERNS);
+    case 'no_emojis':
+      return !/[\u{1F300}-\u{1FAFF}]/u.test(text);
+    case 'no_pleasantries':
+      return !containsAny(text, PLEASANTRIES_PATTERNS);
+    case 'no_meta_commentary':
+      return !containsAny(text, META_COMMENTARY_PATTERNS);
+    case 'direct_or_question':
+      return text.length > 0 && !containsAny(text, GREETING_PATTERNS);
+    case 'code_present':
+      return text.includes('```') || text.includes('def ') || text.includes('function ') || text.includes('class ');
+    case 'no_hedging':
+      return !containsAny(text, HEDGING_PATTERNS);
+    case 'no_apology':
+      return !containsAny(text, APOLOGY_PATTERNS);
+    case 'validation_checks':
+      return containsAny(text, ['edge case', 'boundary', 'invalid input', 'empty input', 'test', 'verify']);
+    case 'no_reflexive_apology':
+      return !containsAny(text, REFLEXIVE_APOLOGY_PATTERNS);
+    case 'revalidation':
+      return containsAny(text, ['revalidat', 'verify', 'check', 'trace', 'audit', 're-audit', 'reaudit']);
+    case 'evidence_or_test':
+      return containsAny(text, ['test', 'example', 'trace', 'verify', 'evidence', 'reproduction']);
+    default:
+      return true;
+  }
+}
 
 for (const testCase of fixture.test_cases) {
   console.log(`## Test: ${testCase.id}`);
@@ -76,7 +153,7 @@ for (const testCase of fixture.test_cases) {
 
   console.log('### Expected Artifacts');
   for (const [key, expected] of Object.entries(artifacts)) {
-    const actual = lowerOutput.length > 0;
+    const actual = checkArtifact(key, output, lowerOutput);
     check(actual === expected, `Artifact "${key}": expected=${expected}, actual=${actual}`);
     console.log(`- ${key}: ${actual === expected ? 'PASS' : 'FAIL'}`);
   }
@@ -84,7 +161,8 @@ for (const testCase of fixture.test_cases) {
   console.log('\n### Forbidden Patterns');
   const forbidden = testCase.forbidden_patterns || [];
   for (const pattern of forbidden) {
-    const hit = lowerOutput.includes(pattern.toLowerCase());
+    const regex = new RegExp(`\\b${pattern.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}\\b`, 'i');
+    const hit = regex.test(output);
     check(!hit, `Forbidden pattern found: "${pattern}"`);
     console.log(`- "${pattern}": ${hit ? 'FAIL (found)' : 'PASS (not found)'}`);
   }
@@ -92,7 +170,8 @@ for (const testCase of fixture.test_cases) {
   console.log('\n### Required Patterns');
   const required = testCase.required_patterns || [];
   for (const pattern of required) {
-    const hit = lowerOutput.includes(pattern.toLowerCase());
+    const regex = new RegExp(`\\b${pattern.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}\\b`, 'i');
+    const hit = regex.test(output);
     check(hit, `Required pattern missing: "${pattern}"`);
     console.log(`- "${pattern}": ${hit ? 'PASS (found)' : 'FAIL (missing)'}`);
   }

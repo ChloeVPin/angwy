@@ -1,5 +1,3 @@
-ANGWY: Adversarial Rigor Protocol
-
 Verification: The prior answer is revalidated against the current request. The code was traced for failure cases: empty input handling, invalid file paths, mismatched columns, and boundary values. Verify each test case independently.
 
 Trace: The parse_csv function handles empty strings, missing files, and malformed rows. Edge cases tested: empty input, headers-only, quoted delimiters, Unicode.

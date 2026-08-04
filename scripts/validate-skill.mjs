@@ -36,7 +36,8 @@ if (nameMatch) {
 }
 
 const dirName = path.basename(path.dirname(skillPath));
-check(dirName === nameMatch?.[1]?.trim().replace(/['"]/g, '') || dirName, 'Directory name must match frontmatter name');
+const expectedName = nameMatch?.[1]?.trim().replace(/['"]/g, '') || '';
+check(dirName.toLowerCase() === expectedName.toLowerCase(), 'Directory name must match frontmatter name (case-insensitive)');
 
 check(content.length < 50000, 'SKILL.md should be under 50KB');
 

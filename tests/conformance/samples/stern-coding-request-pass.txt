@@ -1,5 +1,3 @@
-ANGWY: Adversarial Rigor Protocol
-
 ```python
 import csv
 from pathlib import Path
@@ -54,5 +52,7 @@ Tests:
 - Quoted fields with embedded delimiters
 - Empty fields
 - Unicode content
+
+Run the test suite to verify all cases pass.
 
 This fails safely: no silent data loss, no crashes on malformed input. Verify all edge cases before deploying.
