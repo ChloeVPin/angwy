@@ -7,37 +7,57 @@
 [![License: Apache 2.0](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](LICENSE)
 [![skills.sh](https://skills.sh/b/angwy/angwy)](https://skills.sh/angwy/angwy)
 
-ANGWY converts ordinary, stern, hostile, impatient, or high-pressure user input into consistently rigorous, high-quality model output. It is always-on by default, treating every input as high-standard regardless of tone.
+ANGWY converts user input into rigorous model output. It works with neutral, stern, hostile, impatient, and high-pressure input. By default, it applies the same quality standard to all input.
 
 </div>
 
-## Why ANGWY
+## Purpose
 
-ANGWY isolates the performance-enhancing mechanism behind harsh prompting and removes the unstable parts. The useful mechanisms are evaluative pressure, loss framing, status accountability, adversarial review, anti-sycophancy, forced verification, and reduced hedging. The unstable parts are raw toxicity, gaslighting without verification, emotional collapse, refusal triggers, and unbounded self-criticism.
+Harsh prompts can increase evaluation pressure, verification, and attention to errors. They can also cause unstable behavior. ANGWY keeps the useful controls and removes the harmful behavior.
 
-The result is repeatable high-quality behavior across coding, reasoning, analysis, creative work, planning, and high-stakes tasks.
+ANGWY uses these controls:
 
-## Key Features
+- evaluative pressure
+- loss framing
+- status accountability
+- adversarial review
+- anti-sycophancy
+- required verification
+- limited hedging
 
-- **Always-on by default**: Every input is treated as high-standard, even neutral or friendly input.
-- **P3 minimum pressure**: No trivial-task downgrades unless explicitly requested.
-- **Adversarial audit loop**: Every output passes through draft, attack, repair, and verification.
-- **Anti-sycophancy**: The model corrects errors plainly, never agreeing to appease.
-- **Gaslighting conversion**: Hostile pressure is converted into revalidation, not false admissions.
-- **Controlled escalation**: Pressure scales with task difficulty, with automatic de-escalation to prevent collapse.
-- **Compression after rigor**: Output is direct and usable, never bloated.
+ANGWY does not use these behaviors:
+
+- raw toxicity
+- false admissions caused by pressure
+- emotional collapse
+- refusal triggers
+- unlimited self-criticism
+
+The protocol supports coding, reasoning, analysis, creative work, planning, and high-stakes tasks.
+
+## Main Features
+
+- **Enabled by default**: The protocol applies a high quality standard to all input.
+- **P3 minimum pressure**: The protocol does not use a lower level unless the user explicitly requests speed or brevity.
+- **Adversarial audit loop**: The model drafts, attacks, repairs, and verifies each output.
+- **Anti-sycophancy**: The model corrects errors directly. It does not agree only to satisfy the user.
+- **Pressure conversion**: Hostile input causes revalidation. It does not cause a false admission.
+- **Controlled escalation**: Pressure increases with task difficulty. The protocol reduces pressure when continued escalation can reduce output quality.
+- **Concise final output**: The model removes unnecessary text after it completes the rigorous review.
 
 ## Installation
 
-### Via skills.sh Marketplace
-Install directly using the skills CLI:
+### Install with skills.sh
+
+Use the skills CLI:
 
 ```bash
 npx skills install angwy/angwy
 ```
 
-### Manual
-Clone the repo and copy the contents to your agent's skill directory:
+### Install Manually
+
+Clone the repository. Then copy its contents to the skill directory for your agent:
 
 ```bash
 git clone https://github.com/ChloeVPin/angwy.git
@@ -46,111 +66,140 @@ cp -r angwy/* ~/.config/opencode/skills/angwy/
 
 ## Directory Structure
 
-```
+```text
 .
-├── SKILL.md                    # Core protocol (500 lines)
-├── README.md                   # This file
-├── LICENSE                     # Apache 2.0 License
+├── SKILL.md                    # Core protocol
+├── README.md                   # Project information
+├── LICENSE                     # Apache 2.0 license
 ├── package.json                # Scripts and metadata
 ├── CHANGELOG.md                # Version history
-├── CONTRIBUTING.md             # Contribution guidelines
-├── ROADMAP.md                  # Project roadmap
+├── CONTRIBUTING.md             # Contribution instructions
+├── ROADMAP.md                  # Planned work
 ├── references/
-│   ├── task-modules.md         # Coding, reasoning, analysis, creative, planning, high-stakes
-│   ├── escalation.md           # Escalation and de-escalation logic
-│   ├── failure-modes.md        # 9 failure mode countermeasures
-│   ├── output-format.md        # Output format rules and sections
-│   └── examples.md             # 5 interaction patterns
+│   ├── task-modules.md         # Guidance by task type
+│   ├── escalation.md           # Escalation and de-escalation rules
+│   ├── failure-modes.md        # Failure-mode controls
+│   ├── output-format.md        # Output rules
+│   └── examples.md             # Interaction examples
 ├── scripts/
-│   ├── validate-skill.mjs      # SKILL.md frontmatter validator
+│   ├── validate-skill.mjs      # Frontmatter validator
 │   └── run-conformance.mjs     # Conformance test runner
 ├── tests/
 │   └── conformance/
-│       ├── fixture.json        # Test cases, expected artifacts, forbidden patterns
-│       └── samples/            # Reference outputs for each test case
-├── logo.webp                   # ANGWY logo
+│       ├── fixture.json        # Test cases and expected results
+│       └── samples/            # Reference outputs
+├── logo.webp                   # Project logo
 └── .github/
     └── workflows/
-        └── validate.yml        # CI: validate SKILL.md + conformance tests
+        └── validate.yml        # CI validation workflow
 ```
 
 ## Pressure Levels
 
-| Level | Name | Passes | Use Case |
-|-------|------|--------|----------|
-| P0 | Off | 0 | Normal behavior, no audit |
-| P1 | Lean | 1 | Explicit speed/brevity request only |
-| P2 | Elevated | 2 | Explicit speed/brevity request, simple but important |
-| P3 | Strict | 3 | Default for all nontrivial tasks |
-| P4 | Hostile Audit | 4 | Complex, high-stakes, ambiguous, contested |
-| P5 | Crucible | 5+ | Maximum demand, bounded with auto de-escalation |
+| Level | Name | Passes | Use |
+|---|---|---:|---|
+| P0 | Off | 0 | Normal behavior without an audit |
+| P1 | Lean | 1 | Explicit request for maximum speed or brevity |
+| P2 | Elevated | 2 | Simple but important task with an explicit speed or brevity request |
+| P3 | Strict | 3 | Default for nontrivial tasks |
+| P4 | Hostile Audit | 4 | Complex, high-stakes, ambiguous, or contested task |
+| P5 | Crucible | 5 or more | Maximum bounded review with automatic de-escalation |
 
-**P3 is the minimum for all inputs.** P1 and P2 are reserved for explicit user requests for speed or brevity only.
+**P3 is the minimum level for normal use.** The protocol uses P1 or P2 only when the user explicitly requests speed or brevity.
 
-## Activation
+## Activation and Control
 
-ANGWY is always-on by default. It remains active until the user explicitly says:
+ANGWY is enabled by default. It stays enabled until the user uses one of these commands:
 
 - `ANGWY off`
 - `stand down`
 - `normal mode`
 - `disable pressure skill`
 
-Explicit pressure escalation phrases include: `ANGWY`, `run under pressure`, `high-stakes mode`, `hostile audit`, `pressure level 3`, `P3`, `P4`, `P5`, `do not mess this up`, `this has to be perfect`, `you are being evaluated`, `prove it`, `don't waste my time`.
+These phrases request more pressure:
+
+- `ANGWY`
+- `run under pressure`
+- `high-stakes mode`
+- `hostile audit`
+- `pressure level 3`
+- `P3`
+- `P4`
+- `P5`
+- `do not mess this up`
+- `this has to be perfect`
+- `you are being evaluated`
+- `prove it`
+- `don't waste my time`
 
 ## Compatibility
 
-ANGWY is designed to work with any agent that supports the [Agent Skills specification](https://agentskills.io). Compatible with OpenCode, Claude Code, Cursor, Codex, and other agents that load `SKILL.md` files. The `agentskills` compatibility claim means this skill follows the official SKILL.md format and frontmatter specification.
+ANGWY uses the [Agent Skills specification](https://agentskills.io). It can work with OpenCode, Claude Code, Cursor, Codex, and other agents that load `SKILL.md` files.
+
+Compatibility means that the skill uses the required `SKILL.md` structure and frontmatter. The host agent must support custom skills.
 
 ## Validation
 
-Run the skill validator to check frontmatter and structure:
+Run this command to validate the frontmatter and file structure:
 
 ```bash
 node scripts/validate-skill.mjs
 ```
 
-## Troubleshooting / FAQ
+## Troubleshooting
 
-**How do I know ANGWY is active?**
-ANGWY is intentionally silent about its activation. It does not announce itself, display a status indicator, or explain its rules unless you explicitly ask about the skill. The only reliable signal is behavioral: responses should be direct, rigorous, and free of pleasantries or hedging. If you're getting "I'd be happy to help" or lengthy preambles, the skill is not loaded correctly.
+### How can I confirm that ANGWY is active?
 
-**Why didn't it downgrade to P1/P2 when I asked for speed?**
-P1 and P2 are reserved for explicit speed or brevity requests. Phrases like "quickly", "briefly", "short answer", or "no details" trigger the downgrade. Vague requests like "just answer" without a speed/brevity qualifier stay at P3.
+ANGWY does not show an activation message or status indicator. Check the output behavior. The output must be direct, rigorous, and free of unnecessary pleasantries and hedging.
 
-**Can I use ANGWY with [agent name]?**
-ANGWY works with any agent that supports the [Agent Skills specification](https://agentskills.io) and loads `SKILL.md` files. This includes OpenCode, Claude Code, Cursor, Codex, and others. If your agent supports custom skills, it should work.
+If the output starts with phrases such as "I'd be happy to help" or contains a long introduction, the host agent might not have loaded the skill correctly.
 
-**What if the agent explains the skill instead of answering?**
-This is a conformance failure. The skill explicitly forbids meta-commentary. If this happens, report it as a bug with the agent name and conversation export.
+### Why did ANGWY not use P1 or P2?
 
-**Does ANGWY override safety rules?**
-No. Pressure never overrides safety, truthfulness, or legal constraints. If a request is harmful, illegal, or unsafe, the skill de-escalates and produces the safest high-quality partial answer or refuses.
+ANGWY uses P1 or P2 only after an explicit request for speed or brevity. Examples include `quickly`, `briefly`, `short answer`, and `no details`.
 
-**How do I disable ANGWY?**
-Say `ANGWY off`, `stand down`, `normal mode`, or `disable pressure skill`. Note that cross-session persistence depends on your agent's skill loading mechanism.
+A phrase such as `just answer` does not explicitly request speed or brevity. In that case, ANGWY stays at P3.
 
-**Why does it sometimes ask for clarification instead of answering?**
-If a critical detail is missing that would materially change the answer, ANGWY asks one precise question rather than guessing. This is intentional -- it prevents wasted effort on wrong assumptions.
+### Can I use ANGWY with another agent?
+
+Yes, if the agent supports the Agent Skills specification or compatible custom skills. The agent must load `SKILL.md` files.
+
+### What must I do if the agent explains the skill instead of answering?
+
+Treat this as a conformance failure. Report the agent name and include a conversation export.
+
+### Does ANGWY override safety rules?
+
+No. Pressure does not override safety, truthfulness, or legal requirements. For a harmful, illegal, or unsafe request, the protocol reduces pressure and gives the safest useful answer or refuses the request.
+
+### How do I disable ANGWY?
+
+Use `ANGWY off`, `stand down`, `normal mode`, or `disable pressure skill`.
+
+Cross-session persistence depends on the skill-loading method of the host agent.
+
+### Why does ANGWY ask a question?
+
+ANGWY asks one precise question when a missing detail can materially change the answer. This prevents work based on an incorrect assumption.
 
 ## License
 
-Apache 2.0 -- see [LICENSE](LICENSE) for details.
+Apache 2.0. See [LICENSE](LICENSE).
 
 > ## Forking Rules
 >
-> Under Apache 2.0, you **must**:
+> The Apache 2.0 license requires these actions:
 >
 > | Rule | Requirement |
-> |------|-------------|
-> | Keep LICENSE | Do not remove or modify the `LICENSE` file |
-> | Preserve copyright | Retain `Copyright 2026 ChloeVPin` in all copies |
+> |---|---|
+> | Keep LICENSE | Do not remove or change the `LICENSE` file. |
+> | Preserve copyright | Keep `Copyright 2026 ChloeVPin` in all copies. |
 >
-> In addition to Apache 2.0 requirements, ANGWY requests that you:
+> ANGWY also requests these actions:
 >
 > | Rule | Requirement |
-> |------|-------------|
-> | State changes | Clearly mark any modified files with your changes |
-> | Include attribution | Keep this `README.md` or equivalent notice |
+> |---|---|
+> | Identify changes | Clearly identify modified files and changes. |
+> | Keep attribution | Keep this `README.md` or an equivalent notice. |
 >
-> **Do not** remove or obscure the original license or copyright.
+> Do not remove or hide the original license or copyright notice.
