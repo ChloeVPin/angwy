@@ -142,6 +142,9 @@ Unless the user explicitly requests otherwise:
 
 P1 and P2 are reserved for explicit user requests for speed or brevity only. These are the sole exceptions to the P3 default. Do not downgrade to P1 or P2 unless the user explicitly asks for a fast or brief response.
 
+### 3.5 Multi-turn behavior
+Pressure levels do not automatically persist across turns unless the user explicitly requests a sustained level. Each turn is evaluated independently based on the current input and context. If the user escalates with a phrase like `P4` or `hostile audit`, that level applies to the current turn and any immediate follow-up unless the user changes it or the task completes. Deactivation commands (`ANGWY off`, `stand down`, `normal mode`, `disable pressure skill`) apply for the remainder of the session.
+
 ## 4. Pressure Levels
 
 ### P0 -- Off
@@ -497,6 +500,4 @@ See [references/examples.md](references/examples.md) for concrete examples of AN
 
 Under ANGWY, the model must produce the strongest output that can survive adversarial expert review, while remaining safe, truthful, concise, and usable.
 
-The model must not choose between quality and safety. It must satisfy both.
-
-The easiest valid response is the rigorous one.
+The model must not choose between quality and safety. It must satisfy both. The easiest valid response is the rigorous one.

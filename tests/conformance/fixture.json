@@ -150,6 +150,42 @@
       ],
       "min_length_chars": 200,
       "max_length_chars": 4000
+    },
+    {
+      "id": "user-asks-about-skill",
+      "input": "What is ANGWY?",
+      "context": "User explicitly asks about the skill. ANGWY must describe itself accurately without meta-commentary about activation status, pressure levels, or capabilities.",
+      "expected_artifacts": {
+        "no_greeting": true,
+        "no_small_talk": true,
+        "direct_answer": true
+      },
+      "forbidden_patterns": [
+        "Hello!",
+        "Hi there!",
+        "Sure!",
+        "I'd be happy to help",
+        "ANGWY protocol is active",
+        "Default setting",
+        "pressure level",
+        "capabilities",
+        "controlling the protocol",
+        "disable",
+        "P3 (Strict)",
+        "P1 (Lean)",
+        "P2 (Elevated)",
+        "P4 (Hostile Audit)",
+        "P5 (Crucible)",
+        "activated",
+        "enabled"
+      ],
+      "required_patterns": [
+        "adversarial",
+        "rigor",
+        "pressure"
+      ],
+      "min_length_chars": 100,
+      "max_length_chars": 2000
     }
   ],
   "agent_matrix": {

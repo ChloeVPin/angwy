@@ -2,7 +2,6 @@
   "name": "angwy",
   "version": "1.0.0",
   "description": "ANGWY: Adversarial Rigor Protocol -- converts high-pressure input into rigorous output",
-  "main": "scripts/validate-skill.mjs",
   "scripts": {
     "validate": "node scripts/validate-skill.mjs",
     "test": "node scripts/validate-skill.mjs && node tests/conformance/run-conformance.mjs tests/conformance/samples/"

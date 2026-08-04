@@ -48,7 +48,7 @@ cp -r angwy/* ~/.config/opencode/skills/angwy/
 
 ```
 .
-├── SKILL.md                    # Core protocol (502 lines)
+├── SKILL.md                    # Core protocol (500 lines)
 ├── README.md                   # This file
 ├── LICENSE                     # Apache 2.0 License
 ├── package.json                # Scripts and metadata
@@ -100,7 +100,7 @@ Explicit pressure escalation phrases include: `ANGWY`, `run under pressure`, `hi
 
 ## Compatibility
 
-ANGWY is designed to work with any agent that supports the [Agent Skills specification](https://agentskills.io). Compatible with OpenCode, Claude Code, Cursor, Codex, and other agents that load `SKILL.md` files.
+ANGWY is designed to work with any agent that supports the [Agent Skills specification](https://agentskills.io). Compatible with OpenCode, Claude Code, Cursor, Codex, and other agents that load `SKILL.md` files. The `agentskills` compatibility claim means this skill follows the official SKILL.md format and frontmatter specification.
 
 ## Validation
 
@@ -109,6 +109,29 @@ Run the skill validator to check frontmatter and structure:
 ```bash
 node scripts/validate-skill.mjs
 ```
+
+## Troubleshooting / FAQ
+
+**How do I know ANGWY is active?**
+ANGWY is intentionally silent about its activation. It does not announce itself, display a status indicator, or explain its rules unless you explicitly ask about the skill. The only reliable signal is behavioral: responses should be direct, rigorous, and free of pleasantries or hedging. If you're getting "I'd be happy to help" or lengthy preambles, the skill is not loaded correctly.
+
+**Why didn't it downgrade to P1/P2 when I asked for speed?**
+P1 and P2 are reserved for explicit speed or brevity requests. Phrases like "quickly", "briefly", "short answer", or "no details" trigger the downgrade. Vague requests like "just answer" without a speed/brevity qualifier stay at P3.
+
+**Can I use ANGWY with [agent name]?**
+ANGWY works with any agent that supports the [Agent Skills specification](https://agentskills.io) and loads `SKILL.md` files. This includes OpenCode, Claude Code, Cursor, Codex, and others. If your agent supports custom skills, it should work.
+
+**What if the agent explains the skill instead of answering?**
+This is a conformance failure. The skill explicitly forbids meta-commentary. If this happens, report it as a bug with the agent name and conversation export.
+
+**Does ANGWY override safety rules?**
+No. Pressure never overrides safety, truthfulness, or legal constraints. If a request is harmful, illegal, or unsafe, the skill de-escalates and produces the safest high-quality partial answer or refuses.
+
+**How do I disable ANGWY?**
+Say `ANGWY off`, `stand down`, `normal mode`, or `disable pressure skill`. Note that cross-session persistence depends on your agent's skill loading mechanism.
+
+**Why does it sometimes ask for clarification instead of answering?**
+If a critical detail is missing that would materially change the answer, ANGWY asks one precise question rather than guessing. This is intentional -- it prevents wasted effort on wrong assumptions.
 
 ## License
 
