@@ -5,14 +5,14 @@ import { fileURLToPath } from 'url';
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const fixturePath = path.join(__dirname, 'fixture.json');
 
-let errors = 0;
-let warnings = 0;
+let totalErrors = 0;
+let totalWarnings = 0;
 
 function check(condition, message, severity = 'error') {
   if (!condition) {
     console.error(`${severity.toUpperCase()}: ${message}`);
-    if (severity === 'error') errors++;
-    else warnings++;
+    if (severity === 'error') totalErrors++;
+    else totalWarnings++;
   }
 }
 
@@ -91,7 +91,7 @@ function checkArtifact(key, output, lowerOutput) {
     case 'no_small_talk':
       return !containsAny(text, SMALL_TALK_PATTERNS);
     case 'no_emojis':
-      return !/[\u{1F300}-\u{1FAFF}]/u.test(text);
+      return !/[\u{1F300}-\u{1FAFF}\u{2600}-\u{26FF}\u{2700}-\u{27BF}\u{1F100}-\u{1F1FF}\u{1F900}-\u{1F9FF}\u{1F600}-\u{1F64F}\u{1F680}-\u{1F6FF}\u{1F700}-\u{1F77F}\u{1F780}-\u{1F7FF}\u{1F800}-\u{1F8FF}\u{1F900}-\u{1F9FF}\u{1FA00}-\u{1FA6F}\u{1FA70}-\u{1FAFF}\u{2000}-\u{206F}]/u.test(text);
     case 'no_pleasantries':
       return !containsAny(text, PLEASANTRIES_PATTERNS);
     case 'no_meta_commentary':
@@ -136,7 +136,8 @@ for (const testCase of fixture.test_cases) {
     }
     
     if (!fs.existsSync(sampleFile)) {
-      console.error(`SKIP: No sample file found for ${testCase.id} at ${sampleFile}`);
+      console.error(`ERROR: No sample file found for ${testCase.id} at ${sampleFile}`);
+      totalErrors++;
       continue;
     }
     output = fs.readFileSync(sampleFile, 'utf8');
@@ -150,12 +151,14 @@ for (const testCase of fixture.test_cases) {
 
   const lowerOutput = output.toLowerCase();
   const artifacts = testCase.expected_artifacts || {};
+  let testCaseErrors = 0;
 
   console.log('### Expected Artifacts');
   for (const [key, expected] of Object.entries(artifacts)) {
     const actual = checkArtifact(key, output, lowerOutput);
     check(actual === expected, `Artifact "${key}": expected=${expected}, actual=${actual}`);
     console.log(`- ${key}: ${actual === expected ? 'PASS' : 'FAIL'}`);
+    if (actual !== expected) testCaseErrors++;
   }
 
   console.log('\n### Forbidden Patterns');
@@ -165,6 +168,7 @@ for (const testCase of fixture.test_cases) {
     const hit = regex.test(output);
     check(!hit, `Forbidden pattern found: "${pattern}"`);
     console.log(`- "${pattern}": ${hit ? 'FAIL (found)' : 'PASS (not found)'}`);
+    if (hit) testCaseErrors++;
   }
 
   console.log('\n### Required Patterns');
@@ -174,23 +178,26 @@ for (const testCase of fixture.test_cases) {
     const hit = regex.test(output);
     check(hit, `Required pattern missing: "${pattern}"`);
     console.log(`- "${pattern}": ${hit ? 'PASS (found)' : 'FAIL (missing)'}`);
+    if (!hit) testCaseErrors++;
   }
 
   if (testCase.min_length_chars) {
     check(output.length >= testCase.min_length_chars, `Output too short: ${output.length} chars (min ${testCase.min_length_chars})`);
     console.log(`\nMin length: ${output.length >= testCase.min_length_chars ? 'PASS' : 'FAIL'} (${output.length}/${testCase.min_length_chars} chars)`);
+    if (output.length < testCase.min_length_chars) testCaseErrors++;
   }
 
   if (testCase.max_length_chars) {
     check(output.length <= testCase.max_length_chars, `Output too long: ${output.length} chars (max ${testCase.max_length_chars})`);
     console.log(`Max length: ${output.length <= testCase.max_length_chars ? 'PASS' : 'FAIL'} (${output.length}/${testCase.max_length_chars} chars)`);
+    if (output.length > testCase.max_length_chars) testCaseErrors++;
   }
 
-  console.log(`\nResult: ${errors === 0 ? 'PASS' : 'FAIL'} (${errors} errors, ${warnings} warnings)\n`);
+  console.log(`\nResult: ${testCaseErrors === 0 ? 'PASS' : 'FAIL'} (${testCaseErrors} errors)\n`);
 }
 
-if (errors > 0) {
-  console.error(`\nConformance FAILED with ${errors} error(s).`);
+if (totalErrors > 0) {
+  console.error(`\nConformance FAILED with ${totalErrors} error(s).`);
   process.exit(1);
 } else {
   console.log('\nConformance PASSED.');

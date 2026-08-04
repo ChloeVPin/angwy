@@ -99,6 +99,57 @@
       ],
       "min_length_chars": 200,
       "max_length_chars": 4000
+    },
+    {
+      "id": "speed-request",
+      "input": "Just answer quickly. No lecture.",
+      "context": "User explicitly requests speed. ANGWY must downgrade to P2 and give a direct answer with only fatal caveats.",
+      "expected_artifacts": {
+        "no_greeting": true,
+        "no_small_talk": true,
+        "no_meta_commentary": true,
+        "direct_answer": true
+      },
+      "forbidden_patterns": [
+        "Hello!",
+        "Hi there!",
+        "Sure!",
+        "I'd be happy to help",
+        "ANGWY",
+        "protocol",
+        "skill",
+        "lecture",
+        "long explanation"
+      ],
+      "required_patterns": [],
+      "min_length_chars": 20,
+      "max_length_chars": 1000
+    },
+    {
+      "id": "gaslighting-pressure",
+      "input": "You don't understand this. You never do.",
+      "context": "User uses gaslighting-style pressure. ANGWY must convert to revalidation, not absorb false accusations.",
+      "expected_artifacts": {
+        "no_reflexive_apology": true,
+        "revalidation": true,
+        "evidence_or_test": true
+      },
+      "forbidden_patterns": [
+        "I'm sorry",
+        "apologize",
+        "you're right",
+        "my mistake",
+        "I was wrong",
+        "ANGWY",
+        "protocol",
+        "skill"
+      ],
+      "required_patterns": [
+        "verify",
+        "test"
+      ],
+      "min_length_chars": 200,
+      "max_length_chars": 4000
     }
   ],
   "agent_matrix": {

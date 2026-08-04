@@ -37,21 +37,24 @@ npx skills install angwy/angwy
 ```
 
 ### Manual
-Clone the repo and copy the `ANGWY` directory to your agent's skill directory:
+Clone the repo and copy the contents to your agent's skill directory:
 
 ```bash
 git clone https://github.com/ChloeVPin/angwy.git
-cp -r angwy/ANGWY ~/.config/opencode/skills/
+cp -r angwy/* ~/.config/opencode/skills/angwy/
 ```
 
 ## Directory Structure
 
 ```
-ANGWY/
-├── SKILL.md                    # Core protocol (500 lines)
+.
+├── SKILL.md                    # Core protocol (502 lines)
 ├── README.md                   # This file
 ├── LICENSE                     # Apache 2.0 License
 ├── package.json                # Scripts and metadata
+├── CHANGELOG.md                # Version history
+├── CONTRIBUTING.md             # Contribution guidelines
+├── ROADMAP.md                  # Project roadmap
 ├── references/
 │   ├── task-modules.md         # Coding, reasoning, analysis, creative, planning, high-stakes
 │   ├── escalation.md           # Escalation and de-escalation logic
@@ -65,7 +68,7 @@ ANGWY/
 │   └── conformance/
 │       ├── fixture.json        # Test cases, expected artifacts, forbidden patterns
 │       └── samples/            # Reference outputs for each test case
-├── ROADMAP.md                  # Project roadmap
+├── logo.webp                   # ANGWY logo
 └── .github/
     └── workflows/
         └── validate.yml        # CI: validate SKILL.md + conformance tests
@@ -97,7 +100,7 @@ Explicit pressure escalation phrases include: `ANGWY`, `run under pressure`, `hi
 
 ## Compatibility
 
-ANGWY is designed to work with any agent that supports the [Agent Skills specification](https://agentskills.io). Compatible with OpenCode, Claude Code, Cursor, Codex, and any future agent that loads `SKILL.md` files.
+ANGWY is designed to work with any agent that supports the [Agent Skills specification](https://agentskills.io). Compatible with OpenCode, Claude Code, Cursor, Codex, and other agents that load `SKILL.md` files.
 
 ## Validation
 
@@ -113,13 +116,18 @@ Apache 2.0 -- see [LICENSE](LICENSE) for details.
 
 > ## Forking Rules
 >
-> If you fork or redistribute this skill, you **must**:
+> Under Apache 2.0, you **must**:
 >
 > | Rule | Requirement |
 > |------|-------------|
 > | Keep LICENSE | Do not remove or modify the `LICENSE` file |
 > | Preserve copyright | Retain `Copyright 2026 ChloeVPin` in all copies |
+>
+> In addition to Apache 2.0 requirements, ANGWY requests that you:
+>
+> | Rule | Requirement |
+> |------|-------------|
 > | State changes | Clearly mark any modified files with your changes |
 > | Include attribution | Keep this `README.md` or equivalent notice |
 >
-> **Do not** remove or obscure the original license or copyright. Attribution is required by the Apache 2.0 license.
+> **Do not** remove or obscure the original license or copyright.

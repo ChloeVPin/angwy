@@ -35,6 +35,12 @@ if (nameMatch) {
   check(!name.includes('_'), 'Name must not contain underscores');
 }
 
+const versionMatch = frontmatter.match(/version:\s*["']?(\d+\.\d+\.\d+)["']?/);
+check(versionMatch, 'Frontmatter must have valid semver version (e.g., 1.0.0)');
+if (versionMatch) {
+  check(versionMatch[1].split('.').length === 3, 'Version must be semver (major.minor.patch)');
+}
+
 const dirName = path.basename(path.dirname(skillPath));
 const expectedName = nameMatch?.[1]?.trim().replace(/['"]/g, '') || '';
 check(dirName.toLowerCase() === expectedName.toLowerCase(), 'Directory name must match frontmatter name (case-insensitive)');

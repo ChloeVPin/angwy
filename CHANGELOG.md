@@ -9,7 +9,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 - Conformance fixture with 3 test cases (neutral-greeting, stern-coding-request, hostile-correction)
-- Provider-specific test samples for OpenCode and Claude
+- Provider-specific test samples for OpenCode (all 3 test cases)
+- Generic reference samples for all test cases
 - CI workflow running frontmatter validation and conformance tests
 - ROADMAP.md for project planning
 

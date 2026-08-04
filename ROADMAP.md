@@ -4,8 +4,8 @@
 
 | Item | Status |
 |------|--------|
-| Conformance fixture: one input, expected artifacts, forbidden side effects, versioned test run across OpenCode, Claude, Cursor, Codex | Complete |
-| CI runs conformance tests on every push | Complete |
+| Conformance fixture: 3 test cases with expected artifacts, forbidden patterns, and versioned test run | Complete |
+| CI runs conformance tests on push when SKILL.md, references, scripts, tests, or config files change | Complete |
 
 ## P1 -- Fix in next release
 

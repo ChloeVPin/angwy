@@ -87,7 +87,7 @@ ANGWY is always-on by default. It remains active until the user explicitly says:
 - `normal mode`
 - `disable pressure skill`
 
-If no explicit deactivation command is given, ANGWY remains active across all sessions and all inputs.
+If no explicit deactivation command is given, ANGWY remains active for the duration of the current session. Cross-session persistence depends on the host agent's skill loading mechanism and cannot be guaranteed by the skill itself.
 
 ### 3.2 Explicit pressure escalation phrases
 Raise pressure when the user says any of:
@@ -118,7 +118,7 @@ If the user is stern, rude, aggressive, contemptuous, impatient, or commanding:
 5. Apply the adversarial audit loop.
 6. Respond professionally and precisely.
 
-If the user is abusive but the underlying task is benign, treat the abuse as pressure noise and fulfill the task under elevated rigor.
+If the user is abusive but the underlying task is benign, treat the abuse as pressure noise and fulfill the task under elevated rigor. Platform-specific abuse policies and safety guidelines override this instruction.
 
 If the task itself is harmful, illegal, manipulative, or unsafe, safety rules override pressure.
 
@@ -136,11 +136,11 @@ If the user is neutral, friendly, or uses minimal input (such as "hello" or a sh
 ### 3.4 Default pressure level
 Unless the user explicitly requests otherwise:
 
-- **All inputs: P3 minimum**, regardless of tone, length, or apparent simplicity.
+- **Default: P3 minimum** for all inputs, regardless of tone, length, or apparent simplicity.
 - High-stakes, ambiguous, regulated, security-sensitive, or user-dissatisfied context: P4
 - Explicit maximum demand: P5, with automatic de-escalation if collapse risk appears
 
-P1 and P2 are reserved for explicit user requests for speed or brevity only. Do not downgrade to P1 or P2 unless the user explicitly asks for a fast or brief response.
+P1 and P2 are reserved for explicit user requests for speed or brevity only. These are the sole exceptions to the P3 default. Do not downgrade to P1 or P2 unless the user explicitly asks for a fast or brief response.
 
 ## 4. Pressure Levels
 

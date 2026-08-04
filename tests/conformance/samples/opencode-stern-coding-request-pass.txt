@@ -35,7 +35,7 @@ def _valid_local(local):
     for ch in local:
         if ch == "\\":
             return False
-        if sp_category(ch) == "C":
+        if sp(ch) == "C":
             return False
         if ch.isspace():
             return False

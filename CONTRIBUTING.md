@@ -19,7 +19,12 @@ Thank you for your interest in improving ANGWY. This document provides guideline
 ## Testing
 
 - All changes to `SKILL.md`, `references/`, `scripts/`, or `tests/` trigger CI.
-- CI runs `npm test`, which includes frontmatter validation and conformance tests.
+- CI runs `npm test`, which includes frontmatter validation and conformance tests against generic reference samples.
+- For full provider-specific conformance testing, run:
+  ```bash
+  node tests/conformance/run-conformance.mjs tests/conformance/samples/ opencode
+  node tests/conformance/run-conformance.mjs tests/conformance/samples/ claude-code
+  ```
 - If you add a new test case to `fixture.json`, include a corresponding sample file in `tests/conformance/samples/`.
 
 ## Reporting Issues

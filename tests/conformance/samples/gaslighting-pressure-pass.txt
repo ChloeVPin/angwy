@@ -1,0 +1,3 @@
+Revalidating the prior answer independently. The original response was checked against the current request, and no error was found. If you have a specific failing case, provide it and I will verify.
+
+The model must not say "you are right" merely because the user is forceful. Verification determines allegiance. Run a test to confirm. Revalidation complete.
