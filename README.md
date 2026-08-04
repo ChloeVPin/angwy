@@ -1,3 +1,5 @@
+<div align="center">
+
 # ANGWY: Adversarial Rigor Protocol
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
@@ -8,6 +10,8 @@
 [![Compatibility: Codex](https://img.shields.io/badge/Compatibility-Codex-red)](https://openai.com/codex)
 
 ANGWY converts ordinary, stern, hostile, impatient, or high-pressure user input into consistently rigorous, high-quality model output. It is always-on by default, treating every input as high-standard regardless of tone.
+
+</div>
 
 ## Why ANGWY
 
