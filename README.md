@@ -4,8 +4,12 @@
 
 # ANGWY: Adversarial Rigor Protocol
 
-[![License: Apache 2.0](https://img.shields.io/badge/License-Apache_2.0-blue?style=flat.svg)](LICENSE)
-[![skills.sh](https://skills.sh/b/angwy/angwy)](https://skills.sh/angwy/angwy)
+[![CI](https://img.shields.io/github/actions/workflow/status/ChloeVPin/angwy/validate.yml?style=flat&logo=githubactions&logoColor=white)](https://github.com/ChloeVPin/angwy/actions/workflows/validate.yml)
+[![Licence](https://img.shields.io/badge/licence-Apache_2.0-3DA639?style=flat&logo=opensourceinitiative&logoColor=white)](LICENSE)
+[![Release](https://img.shields.io/github/v/release/ChloeVPin/angwy?style=flat&logo=semanticrelease&logoColor=white)](https://github.com/ChloeVPin/angwy/releases/latest)
+[![Stars](https://img.shields.io/github/stars/ChloeVPin/angwy?style=flat&logo=github&logoColor=white)](https://github.com/ChloeVPin/angwy/stargazers)
+[![Install](https://img.shields.io/badge/install-npx_skills_add-000000?style=flat&logo=npm&logoColor=white)](#install)
+[![Format](https://img.shields.io/badge/format-Agent_Skills-8A63D2?style=flat&logo=anthropic&logoColor=white)](https://platform.claude.com/docs/en/agents-and-tools/agent-skills/overview)
 
 ANGWY converts user input into rigorous model output. It works with neutral, stern, hostile, impatient, and high-pressure input. By default, it applies the same quality standard to all input.
 
