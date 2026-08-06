@@ -1,15 +1,29 @@
 <div align="center">
 
-<img src="logo.webp" alt="ANGWY logo" width="128">
+<img src="assets/logo.webp" alt="ANGWY logo" width="128">
 
 # ANGWY: Adversarial Rigor Protocol
 
-[![License: Apache 2.0](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](LICENSE)
+[![License: Apache 2.0](https://img.shields.io/badge/License-Apache_2.0-blue?style=flat.svg)](LICENSE)
 [![skills.sh](https://skills.sh/b/angwy/angwy)](https://skills.sh/angwy/angwy)
 
 ANGWY converts user input into rigorous model output. It works with neutral, stern, hostile, impatient, and high-pressure input. By default, it applies the same quality standard to all input.
 
 </div>
+
+## Install
+
+Install with the Vercel skills CLI:
+
+```bash
+npx skills add ChloeVPin/angwy
+```
+
+If you do not have Node.js, clone the repository and copy the `skills/angwy` folder into your agent's skills directory:
+
+```bash
+git clone https://github.com/ChloeVPin/angwy.git
+```
 
 ## Purpose
 
